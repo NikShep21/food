@@ -1,0 +1,38 @@
+@use '/src/styles/variables' as *;
+
+.headerContainer {
+    padding: 0px $paddingMobile;
+    max-width: $maxContainer;
+    margin: 0 auto;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba($color: #6b6b6b, $alpha: 0.2);
+    font-size: 20px;
+    .logo{
+        font-size: 35px;
+        font-weight: 600;
+        
+        
+    }
+    .navList{
+        display: flex;
+        gap: 20px;
+        & > li > a{
+            
+            transition: all 0.2s ease;
+            &:hover{
+                opacity: 0.6;
+            }
+            
+        }
+    }
+    .authContainer{
+        font-size: 20px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+}

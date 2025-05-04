@@ -1,0 +1,10 @@
+@use '../../../styles/variables' as *;
+.btn{
+    background-color: $color-primary;
+    padding: 10px 20px;
+    border-radius: 7px;
+    color: white;
+    &:hover{
+        opacity: 0.6;
+    }
+}
