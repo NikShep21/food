@@ -1,10 +1,10 @@
 @use '/src/styles/variables' as *;
 
 .headerContainer {
-    padding: 0px $paddingMobile;
+    padding: 10px $paddingMobile;
     max-width: $maxContainer;
     margin: 0 auto;
-    padding: 10px 0px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "../styles/globals.scss";
 import "../styles/reset.scss";
+import clsx from "clsx";
 import Header from "@/components/screens/Header/Header";
 import Footer from "@/components/screens/Footer/Footer";
 
@@ -29,10 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable}`}>
+      <body className={clsx(inter.variable, playfair.variable)}>
         <Header/>
         {children}
-        <Footer/>
+        
       </body>
     </html>
   );

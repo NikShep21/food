@@ -1,0 +1,15 @@
+.authContainer{
+    background-color: white;
+    box-shadow: 4px 4px 15px rgba(82, 81, 81, 0.3);
+    padding: 30px;
+    border-radius: 20px;
+    .form{
+        display: flex;
+        flex-direction: column;
+        gap:20px
+    }
+    .header{
+        text-align: center;
+    }
+    
+}
