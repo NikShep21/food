@@ -1,0 +1,18 @@
+.textareaContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+      
+    .textarea{
+        background-color: white;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 1px 1px 10px  rgba($color: #686868, $alpha: 0.4);
+        font-size: 24px;
+    }
+    .label{
+        font-size: 32px;
+    }
+}

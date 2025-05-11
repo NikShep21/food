@@ -1,0 +1,30 @@
+@use '../../../styles/variables' as *;
+.inputContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .label{
+        opacity: 0.7;
+        
+    }
+    .input{
+        background-color: rgba($color: #a5a5a5, $alpha: 0.3);
+        border-radius: 10px;
+        padding: 12px 10px;
+        font-size: 18px;
+        width: 100%;
+       
+       
+    }
+    .error{
+        position: absolute;
+        color: red;
+        font-size: 14px;
+        bottom: -18px;
+        left: 0px;
+    }
+  
+     
+      
+}

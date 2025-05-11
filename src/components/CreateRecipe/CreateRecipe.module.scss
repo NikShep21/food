@@ -1,0 +1,27 @@
+.baseDescriptionContainer{
+    display: flex;
+    justify-content: space-between;
+    gap: 45px;
+    
+    .baseDescription{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 30px;
+        .cookTime{
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        
+    }
+
+}
+.mainDescription{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 50px;
+    }

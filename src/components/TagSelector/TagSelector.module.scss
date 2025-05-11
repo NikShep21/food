@@ -1,0 +1,11 @@
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

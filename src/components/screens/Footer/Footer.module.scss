@@ -1,0 +1,10 @@
+@use '../../../styles/variables' as *;
+.footer{
+    background-color: $color-primary;
+    padding: 40px;
+    color: white;
+    .footerContainer{
+        max-width: $maxContainer;
+        margin: 0 auto;
+    }
+}

@@ -1,4 +1,8 @@
 .loginContainer{
-text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 7%;
+    flex: 1;
 
 }

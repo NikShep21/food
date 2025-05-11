@@ -1,0 +1,121 @@
+@use '/src/styles/variables' as *;
+
+.container {
+  position: relative;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 24px;
+  .selectedContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+    min-height: 26px;
+    .tag {
+      height: 26px;
+      display: flex;
+      font-size: 12px;
+      align-items: center;
+      background-color: #f0f0f0;
+      
+      padding: 4px 8px;
+      border-radius: 8px;
+    }
+    
+    
+    .tagLabel {
+      margin-right: 6px;
+    }
+    
+    
+    .removeButton {
+       opacity: 0.5;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 1;
+        padding: 0;
+      }
+      
+  }
+  
+  
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .inputCount {
+        font-size: 18px;
+        width: 80px;
+        padding: 2px 4px;
+        margin-right: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        appearance: text;
+    }
+      
+    .addContainer{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .inputSearch {
+      width: 100%;
+      font-size: 24px;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      
+    }
+    
+    
+    .dropdownList {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      max-height: 150px;
+      margin: 0;
+      padding: 4px 0;
+      list-style: none;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+    
+    .listItem {
+      padding: 6px 8px;
+      cursor: pointer;
+    }
+    
+    .listItem:hover {
+      background-color: #eee;
+    }
+    
+    
+
+    
+    .selectBox {
+      position: relative;
+      flex: 1;
+    }
+     
+    
+    .addButton {
+      padding: 8px 12px;
+      
+      background-color: $color-primary;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .addButton:disabled {
+      opacity: 0.8;
+      cursor: not-allowed;
+    }
+  }
+}
+

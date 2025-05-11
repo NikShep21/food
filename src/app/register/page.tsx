@@ -1,10 +1,11 @@
-import Auth from '@/components/Auth/Auth'
+
 import styles from './page.module.scss'
+import AuthRegister from '@/components/Auth/AuthRegister'
 const register = () => {
    return(
        <div className={styles.registerContainer}>
             
-                <Auth type='Register'/>
+                <AuthRegister/>
             
        </div>
    )

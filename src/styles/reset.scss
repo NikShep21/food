@@ -26,3 +26,12 @@ input, textarea{
 ul, li{
     list-style: none;
 }
+textarea {
+         border: none;
+        outline: none;
+        all: unset; 
+        resize: none;
+         white-space: pre-wrap;
+         word-break: break-word;
+  overflow-wrap: break-word;
+}

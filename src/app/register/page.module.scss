@@ -1,12 +1,8 @@
 .registerContainer{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
- 
+    padding-top: 7%;
+    flex: 1;
 
 }

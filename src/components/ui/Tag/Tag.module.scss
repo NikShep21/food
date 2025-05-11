@@ -1,0 +1,18 @@
+/* Tag.module.scss */
+.tag {
+  padding: 4px 8px;
+  border: 2px solid;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.tag:hover {
+  opacity: 0.8;
+}
+
+.selected {
+  /* тень для выделенного состояния */
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}

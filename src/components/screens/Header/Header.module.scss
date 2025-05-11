@@ -1,5 +1,7 @@
 @use '/src/styles/variables' as *;
-
+.header{
+    z-index: 10;
+}
 .headerContainer {
     padding: 10px $paddingMobile;
     max-width: $maxContainer;
@@ -34,5 +36,47 @@
         gap: 20px;
         align-items: center;
     }
+    
+    .userContainer {
+        position: relative;
+        cursor: pointer;
+        h2 {
+        margin: 0;
+        }
+        .infoUser{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            .user{
+                font-size: 20px;
+                font-family: var(--font-inter);
+            }
+        }
+         .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+            min-width: 120px;
+         }
+          li {
+        a {
+          color: black;
+          text-decoration: none;
+          transition: opacity 0.2s ease;
 
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+    }
+    }
 }

@@ -6,6 +6,9 @@ import "../styles/reset.scss";
 import clsx from "clsx";
 import Header from "@/components/screens/Header/Header";
 import Footer from "@/components/screens/Footer/Footer";
+import LayoutStore from "@/components/layouts/LayoutStore";
+import LayoutStateInit from "@/components/layouts/LayoutStateInit";
+
 
 const playfair = Playfair_Display({
   variable: '--font-playfair',
@@ -28,11 +31,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={clsx(inter.variable, playfair.variable)}>
-        <Header/>
-        {children}
+        <LayoutStore>
+          <LayoutStateInit>
+              
+                {children}
+              
+            </LayoutStateInit>
+         </LayoutStore>
+         
+       
         
       </body>
     </html>
