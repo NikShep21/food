@@ -58,30 +58,49 @@ const CreateRecipe = ({
               <MyInput
                 label="Название"
                 value={field.value}
-                onChange={field.onChange}
+                changer={field.onChange}
                 error={fieldState.error?.message}
               />
             )}
           />
           {/* Поле: время приготовления */}
           <div className={styles.cookTime}>
-            <span>Время приготовления:</span>
+            <h2 className={styles.headTimeCook}>Время приготовления:</h2>
+            <div className={styles.inpTimeContainer}>
+
             <Controller
               name="cooking_time"
               control={control}
               rules={{
                 required: "Укажите время приготовления",
-                min: { value: "1", message: "Минимальное значение — 1" },
+                validate: (value) => {
+                  const num = Number(value);
+                  if (isNaN(num) || !Number.isInteger(num))
+                    return "Введите целое число";
+                  if (num < 1) return "Минимальное значение — 1";
+                  return true;
+                },
               }}
               render={({ field, fieldState }) => (
                 <MyInput
-                  type="number"
-                  value={field.value}
-                  onChange={field.onChange}
+                  value={field.value?.toString() ?? ""}
+                  style={{
+                     padding:5, 
+                    width:80  
+                  }}
+                  changer={(val) => {
+                    if (/^\d*$/.test(val)) {
+                      if (val === "" || parseInt(val, 10) >= 1) {
+                        field.onChange(val);
+                      }
+                    }
+                  }}
                   error={fieldState.error?.message}
                 />
               )}
-            />
+              />
+              <p style={{opacity:0.5}}>Мин</p>
+            </div>
           </div>
           <Controller
             name="ingredients"
@@ -102,7 +121,6 @@ const CreateRecipe = ({
         </div>
       </section>
 
-     
       <section className={styles.mainDescription}>
         <Controller
           name="tags"
@@ -113,7 +131,7 @@ const CreateRecipe = ({
           render={({ field, fieldState }) => (
             <>
               <TagSelector
-                layout='Выберите тэги'
+                layout="Выберите тэги"
                 tags={tagData} // все теги
                 selected={field.value || []} // выбранные ID
                 onChange={field.onChange} // установка новых ID

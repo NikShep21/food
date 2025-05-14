@@ -10,11 +10,7 @@ import LayoutStore from "@/components/layouts/LayoutStore";
 import LayoutStateInit from "@/components/layouts/LayoutStateInit";
 
 
-const playfair = Playfair_Display({
-  variable: '--font-playfair',
-  subsets: ['latin'],
-  weight: ['400', '700'],
-});
+
 
 const inter = Inter({
   variable: '--font-inter',
@@ -34,7 +30,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={clsx(inter.variable, playfair.variable)}>
+      <body className={inter.variable}>
         <LayoutStore>
           <LayoutStateInit>
               

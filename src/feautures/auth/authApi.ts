@@ -1,6 +1,6 @@
 import cookies from 'js-cookie'
 import {authApi, publicApi} from '../../shared/api/baseApi'
-import { Errors, loginResponse, RegisterResponse } from './types';
+import { Errors, loginResponse, RegisterResponse, UserType } from './types';
 
 
 
@@ -59,7 +59,7 @@ export const auth = publicApi.injectEndpoints({
 
 export const authWithJWT = authApi.injectEndpoints({
     endpoints: (build) => ({
-        getInfoUser: build.query<{username:string, first_name:string, last_name:string,email:string, avatar:string},null>({
+        getInfoUser: build.query<UserType,null>({
                 query: ()=> ({
                     url:'users/me/',
                     method: 'GET'

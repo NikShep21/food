@@ -7,6 +7,7 @@ import {SubmitHandler, useForm } from 'react-hook-form';
 import MyBtn from '../ui/MyBtn/MyBtn';
 import styles from './Auth.module.scss'
 import InputsRegister from './inputs/InputsRegister';
+import Link from 'next/link';
 
 interface FormValues {
     email: string;
@@ -41,12 +42,12 @@ const AuthRegister = () => {
   return (
     <div>
         <div className={styles.authContainer}>
-            <h2 className={styles.header}>Register</h2>
+            <h2 className={styles.header}>Регистрация</h2>
             <form  onSubmit={handleSubmit(onSubmit)} noValidate className={styles.form}>
 
                 <InputsRegister control={control} watch={watch}/>
-
-                <MyBtn type="submit" className={styles.btn}>Register</MyBtn>
+                <Link href={'/login'} className={styles.Redirect}>Войти</Link>
+                <MyBtn type="submit" className={styles.btn}>Регистрация</MyBtn>
 
             </form>
         </div>

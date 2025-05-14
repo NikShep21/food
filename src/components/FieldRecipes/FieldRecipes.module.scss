@@ -1,6 +1,9 @@
+@use '/src/styles/variables' as *;
 .mainContainer{
     display: flex;
-    gap: 50px;
+    gap: 40px;
     flex-wrap: wrap;
-    justify-content: center;
+    padding: 0px $paddingMobile 80px $paddingMobile;
+   
+    
 }

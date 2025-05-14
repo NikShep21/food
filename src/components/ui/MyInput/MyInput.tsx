@@ -1,32 +1,20 @@
-'use client';
-import { useId } from 'react';
-import styles from './MyInput.module.scss';
+"use client";
+import { useId } from "react";
+import styles from "./MyInput.module.scss";
 
-interface Props {
-  type?: 'text' | 'number';         // проконтролируем допустимые типы
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+  // проконтролируем допустимые типы
   label?: string;
-  value: string | number;
-  onChange: (value: string | number) => void;
+  value: string;
+  changer: (value: string) => void;
   error?: string;
 }
 
-const MyInput = ({
-  type = 'text',
-  label = '',
-  value,
-  onChange,
-  error
-}: Props) => {
+const MyInput = ({ label = "", value, changer, error, ...props }: Props) => {
   const id = useId();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (type === 'number') {
-      // e.target.valueAsNumber — число или NaN
-      const num = e.target.valueAsNumber;
-      onChange(isNaN(num) ? 0 : num);
-    } else {
-      onChange(e.target.value);
-    }
+    changer(e.target.value);
   };
 
   return (
@@ -37,8 +25,9 @@ const MyInput = ({
         </label>
       )}
       <input
+        {...props}
         id={id}
-        type={type}
+        type='text'
         className={styles.input}
         value={value}
         onChange={handleChange}

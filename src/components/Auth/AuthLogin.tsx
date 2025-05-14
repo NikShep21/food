@@ -9,6 +9,7 @@ import MyBtn from '../ui/MyBtn/MyBtn';
 import InputsLogin from './inputs/InputsLogin';
 import { Errors } from '@/feautures/auth/types';
 import { useDispatch } from 'react-redux';
+import Link from 'next/link';
 interface FormValues {
     email: string;
     password: string;
@@ -43,7 +44,8 @@ const AuthLogin = () => {
             <h2 className={styles.header}>Login</h2>
             <form  onSubmit={handleSubmit(onSubmit)} noValidate className={styles.form}>
                  <InputsLogin control={control}/>
-                <MyBtn type="submit" className={styles.btn}>Login</MyBtn>
+                 <Link className={styles.Redirect} href={'/register'}>Регистрация</Link>
+                <MyBtn type="submit" className={styles.btn}>Вход</MyBtn>
             </form>
     </div>
         

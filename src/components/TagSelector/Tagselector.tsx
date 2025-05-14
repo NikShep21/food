@@ -7,11 +7,11 @@ export type TagType = { id: number; name: string; slug: string; color: string };
 type Props = {
   tags: TagType[];
   selected: number[];
-  layout:string
+  layout?:string
   onChange: (ids: number[]) => void;
 };
 
-const TagSelector: React.FC<Props> = ({ tags,layout, selected, onChange }) => {
+const TagSelector: React.FC<Props> = ({ tags,layout='', selected, onChange }) => {
   const toggle = (id: number) => {
     if (selected.includes(id)) {
       onChange(selected.filter(x => x !== id));
@@ -22,14 +22,20 @@ const TagSelector: React.FC<Props> = ({ tags,layout, selected, onChange }) => {
 
   return (
     <div className={styles.container}>
+      {
+        layout ? 
         <h2>{layout}</h2>
+        :
+        null
+      }
+        
         <div className={styles.tagsContainer}>
             {tags.map(tag => (
                 <Tag
                 key={tag.id}
                 id={tag.id}
                 name={tag.name}
-                color={tag.color}
+                
                 selected={selected.includes(tag.id)}
                 onClick={toggle}
                 />

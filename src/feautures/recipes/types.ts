@@ -3,7 +3,9 @@ export interface GetIngredient{
     name:string
     measurement_unit:string
 }
-
+interface IngredientInRecipe extends GetIngredient{
+    amount:number
+}
 export interface Tags{
     id:number
     name:string
@@ -40,6 +42,9 @@ export interface RecipeType {
         slug:string
         color:string
     }[]
+    ingredients:IngredientInRecipe[]
+    is_favorited:boolean
+    is_in_shopping_card:boolean
 }
 export interface fullRecipe{
     count:number

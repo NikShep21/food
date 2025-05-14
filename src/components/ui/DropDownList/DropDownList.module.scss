@@ -56,7 +56,11 @@
     .addContainer{
         display: flex;
         align-items: center;
+        justify-content: right;
         gap: 15px;
+        .countHead{
+          text-wrap: nowrap;
+        }
     }
     
     .inputSearch {

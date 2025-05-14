@@ -1,4 +1,4 @@
-// components/screens/Header/Header.tsx
+
 'use client'
 
 import Link from 'next/link'
@@ -7,7 +7,9 @@ import MyBtn from '@/components/ui/MyBtn/MyBtn'
 import { useGetInfoUserQuery } from '@/feautures/auth/authApi'
 import { useState } from 'react'
 import { useLogout } from '@/shared/hooks/useLogout'
-import { RxAvatar } from "react-icons/rx";
+import User from '@/components/ui/User/User'
+import clsx from 'clsx'
+
 const Header = () => {
   
   const [showDropdown, setShowDropdown] = useState(false)
@@ -24,24 +26,18 @@ const Header = () => {
         <nav>
           <ul className={styles.navList}>
             <li><Link href="/recipe">Создать</Link></li>
-            <li><Link href="/">ddddddd</Link></li>
+            <li><Link href="/">Мои рецепты</Link></li>
           </ul>
         </nav>
 
         {user ? (
           <div
-            className={styles.userContainer}
+            className={clsx(styles.userContainer,showDropdown? styles.active:null)}
             onClick={() => setShowDropdown(prev => !prev)}
           >
-            <div className={styles.infoUser}>
-
-              <h3 className={styles.user}>{user.username}</h3>
-              {
-                user.avatar ? <img src={user.avatar} alt="" /> 
-                : 
-                <RxAvatar size={35}/>
-              }
-            </div>
+            
+            <User username={user.username} avatar={user.avatar}/>
+            
             {showDropdown && (
               <ul className={styles.dropdown}>
                 <li><Link href="/profile">Профиль</Link></li>

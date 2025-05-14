@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     gap: 45px;
-    
+    font-size: 24px;
     .baseDescription{
         display: flex;
         flex-direction: column;
@@ -11,17 +11,33 @@
         .cookTime{
             display: flex;
             align-items: center;
-            font-size: 24px;
+            
             gap: 10px;
             justify-content: space-between;
+            .inpTimeContainer{
+                display: flex;
+                gap: 15px;
+                align-items: center;
+                
+            }
+            .headTimeCook{
+                font-size: 24px;
+            }
         }
         
     }
 
 }
+
 .mainDescription{
         display: flex;
         flex-direction: column;
         gap: 30px;
         margin-top: 50px;
+}
+@media (max-width:900px) {
+    .baseDescriptionContainer{
+        flex-direction: column;
     }
+
+}

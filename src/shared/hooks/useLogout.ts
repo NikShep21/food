@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { clearUser } from '@/feautures/auth/authSlice'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
+import { authApi } from '../api/baseApi'
 
 export const useLogout = () => {
   const dispatch = useDispatch()
@@ -11,6 +12,7 @@ export const useLogout = () => {
   return () => {
     Cookies.remove('token')
     dispatch(clearUser())
+    dispatch(authApi.util.resetApiState())
     router.push('/')
   }
 }

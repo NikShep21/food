@@ -12,3 +12,10 @@ export interface Errors{
     status:number;
     data:any
 }
+export interface UserType{
+    username:string, 
+    first_name:string, 
+    last_name:string,
+    email:string,
+    avatar:string
+}

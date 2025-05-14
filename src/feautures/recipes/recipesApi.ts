@@ -33,20 +33,27 @@ export const recipesWithoutAuth =  publicApi.injectEndpoints({
                 method:'GET'
             })
         }),
-       GetRecipes:build.query<RecipeType[],null>({
-            query: () =>({
-                url:'recipes/',
-                method: 'GET'
-            }),
-            transformResponse: (response: fullRecipe) => response.results,
-       }),
+       GetRecipes: build.query<fullRecipe, { page: number; tags?: string[];}>({
+        query: ({ page, tags}) => ({
+            url: 'recipes/',
+            method: 'GET',
+            params: {
+            page,
+            tags   
+
+            }
+        })
+        }),
+
         GetRecipe:build.query<RecipeType,{id:number}>({
             query: (data) =>({
                 url:`recipes/${data.id}/`,
                 method: 'GET'
             }),
             
-        })
+        }),
+        
+        
 })  })
 
 export const {useCreateRecipeMutation} = recipesWithAuth

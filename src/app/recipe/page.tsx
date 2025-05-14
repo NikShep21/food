@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useGetTagsQuery } from "@/feautures/recipes/recipesApi";
@@ -11,9 +11,19 @@ import {
 import CreateRecipe, {
   RecipeFormValues,
 } from "@/components/CreateRecipe/CreateRecipe";
+import { useAuth } from "@/shared/hooks/useAuth"; // убедись, что путь правильный
 
 export default function CreateRecipePage() {
   const router = useRouter();
+  const { isAuth } = useAuth();
+
+  // ⛔ Редирект, если не авторизован
+  useEffect(() => {
+    if (!isAuth) {
+      router.push("/login"); // или другой путь к авторизации
+    }
+  }, [isAuth, router]);
+
   const { data: tagData = [] } = useGetTagsQuery(null);
 
   const {
@@ -33,14 +43,10 @@ export default function CreateRecipePage() {
 
   const { data: ingredientsData, isLoading: ingredientsLoading } =
     useGetIngredientsQuery(null);
-  const ingredientOptions =
-    ingredientsData?.map((item) => ({ label: item.name, value: item.id })) ||
-    [];
   const [createRecipe, { isLoading: creating }] = useCreateRecipeMutation();
 
   const onSubmit = async (formData: any) => {
     try {
-      console.log(formData);
       const res = await createRecipe(formData).unwrap();
       router.push("/");
     } catch (err) {
@@ -50,14 +56,17 @@ export default function CreateRecipePage() {
 
   return (
     <main className={styles.mainContainer}>
-      <CreateRecipe
-        control={control}
-        handleSubmit={handleSubmit}
-        onSubmit={onSubmit}
-        creating={creating}
-        ingredientsData={ingredientsData}
-        tagData={tagData}
-      />
+     
+      {!isAuth ? null : (
+        <CreateRecipe
+          control={control}
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+          creating={creating}
+          ingredientsData={ingredientsData}
+          tagData={tagData}
+        />
+      )}
     </main>
   );
 }

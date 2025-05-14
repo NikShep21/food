@@ -23,10 +23,10 @@ const InputsRegister= ({control, watch}:LoginInputsProps) => {
         
         rules={
             {
-                required: "Email is required",
+                required: "Почта обязательна",
                 pattern: {
                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                    message: "Invalid email address",
+                    message: "Неправильная почта",
                 },
                 
 
@@ -49,10 +49,10 @@ const InputsRegister= ({control, watch}:LoginInputsProps) => {
         control={control}
         rules={
             {
-                required: "Username is required",
+                required: "Ник обязателен",
                 minLength: {
                     value: 3,
-                    message: "Username must be at least 3 characters long",
+                    message: "Слишком короткий ник",
                 },
             }
         }
@@ -72,10 +72,10 @@ const InputsRegister= ({control, watch}:LoginInputsProps) => {
       
       rules={
           {
-              required: "Username is required",
+              required: "Имя обязательно",
               minLength: {
                   value: 3,
-                  message: "Name must be at least 3 characters long",
+                  message: "Слишком короткое имя",
               },
           }
       }
@@ -94,10 +94,10 @@ const InputsRegister= ({control, watch}:LoginInputsProps) => {
         control={control}
         rules={
             {
-                required: "Username is required",
+                required: "Фамилия обязательна",
                 minLength: {
                     value: 3,
-                    message: "Surname must be at least 3 characters long",
+                    message: "Слишком короткая фамилия",
                 },
             }
         }
@@ -120,10 +120,10 @@ const InputsRegister= ({control, watch}:LoginInputsProps) => {
           control={control}
           rules={
               {
-                  required: "Password is required",
+                  required: "Пароль обязателен",
                   minLength: {
                       value: 8,
-                      message: "Password must be at least 8 characters long",
+                      message: "Слишком короткий пароль(минимум 8 символов)",
                   },
               }
           }
@@ -145,9 +145,9 @@ const InputsRegister= ({control, watch}:LoginInputsProps) => {
           control={control}
           rules={
               {
-                  required: "Confirm Password is required",
+                  required: "Подтверждение пароля обязательно",
                   validate: (value) => {
-                      return value === watch("password") || "Passwords do not match";
+                      return value === watch("password") || "Пароли не совпадают";
                   }
               }
           }
