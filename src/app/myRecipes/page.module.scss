@@ -1,0 +1,22 @@
+@use '/src/styles/variables' as *;
+
+.mainContainer{
+    margin: 0px auto 0px auto;
+    max-width: $maxContainer;
+    width: 100%;
+    padding-top: 80px;
+    
+    .innerContainer{
+         display: flex;
+         flex-direction: column;
+         gap:30px;
+
+     }
+}
+.loader{
+    
+    padding: 20px ;
+   width: 100%;
+ 
+    
+}

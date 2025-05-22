@@ -1,18 +1,19 @@
-'use client'
-import { useDispatch } from 'react-redux'
-import { clearUser } from '@/feautures/auth/authSlice'
-import Cookies from 'js-cookie'
-import { useRouter } from 'next/navigation'
-import { authApi } from '../api/baseApi'
+import { useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+import { setUser, setInitialized, logout } from '@/feautures/auth/authSlice';
 
-export const useLogout = () => {
-  const dispatch = useDispatch()
-  const router = useRouter()
+export const useLogout = (path:string|null = null) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   return () => {
-    Cookies.remove('token')
-    dispatch(clearUser())
-    dispatch(authApi.util.resetApiState())
-    router.push('/')
-  }
-}
+    dispatch(logout());
+    {
+      path ? 
+      router.push(path)
+      :
+      null
+    }
+  };
+};

@@ -9,10 +9,19 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   size?: number;
 }
-const User = ({ username, className, avatar, size = 35, ...props }: Props) => {
+const User = ({ username, className, avatar, size = 40, ...props }: Props) => {
   return (
     <div className={clsx(styles.container, className)} {...props}>
-      {avatar ? <img src={avatar} alt="av" /> : <RxAvatar size={size} />}
+      {avatar ? (
+        <img
+          src={avatar}
+          alt="av"
+          className={styles.avatar}
+          style={{ width: size, height: size, borderRadius: "50%" }}
+        />
+      ) : (
+        <RxAvatar size={size} />
+      )}
       <p>{username}</p>
     </div>
   );

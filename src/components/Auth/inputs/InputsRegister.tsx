@@ -1,6 +1,6 @@
 import MyInputAuth from '@/components/ui/MyInputAuth/MyInputAuth';
 import React from 'react'
-import { Control, Controller, UseFormWatch } from 'react-hook-form';
+import { Control, Controller, useForm, useFormState, UseFormWatch } from 'react-hook-form';
 
 interface FormValues {
     email: string;
@@ -9,12 +9,14 @@ interface FormValues {
     last_name: string;
     password: string;
     confirmPassword: string;
+    non_field_errors?:string
 }
 interface LoginInputsProps{
   control: Control<FormValues>;
   watch: UseFormWatch<FormValues>
 };
 const InputsRegister= ({control, watch}:LoginInputsProps) => {
+    const {errors} = useFormState({control})
   return (
     <>
      <Controller
@@ -161,7 +163,13 @@ const InputsRegister= ({control, watch}:LoginInputsProps) => {
                   error={fieldState.error?.message}
               />
           )}
+
       />
+      {errors.non_field_errors && (
+        <p style={{ color: "red", marginTop: "8px" }}>
+          {errors.non_field_errors.message}
+        </p>
+      )}
     </>
   )
 }

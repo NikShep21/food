@@ -1,36 +1,35 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import Cookies from 'js-cookie'
+import { UserType } from './types'
 
-type User = {
- 
-    username: string
-    email:string
-    first_name:string
-    last_name:string
-}
 interface AuthState {
-  user: User | null
-  initialized: boolean
+  user: UserType | null
+  initialized: boolean,
+ 
 }
 
 const initialState: AuthState = {
   user: null,
-  initialized: false
+  initialized: false,
+
 }
 
 const authSlice = createSlice({
     name:'auth',
     initialState,
     reducers:{
-        setUser(state, action: PayloadAction<User>){
+        setUser(state, action: PayloadAction<UserType>){
             state.user = action.payload
         },
-        clearUser(state){
-            state.user = null
+        logout: (state) => {
+            state.user = null;
+           
+            Cookies.remove('token');
         },
-        setInitialized(state){
-            state.initialized = true
-        }
+        setInitialized: (state) => {
+            state.initialized = true;
+        },
     }
 })
-export const {setUser, clearUser, setInitialized} = authSlice.actions
+export const {setUser, logout, setInitialized} = authSlice.actions
 export default authSlice.reducer

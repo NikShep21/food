@@ -8,7 +8,6 @@ const baseQueryWithAuth = fetchBaseQuery({
 
   prepareHeaders: (headers) => {
     const token = Cookies.get('token');
-    console.log(token)
     if (token) headers.set("Authorization", `Token ${token}`);
     return headers;
   },
@@ -23,11 +22,13 @@ const baseQueryWithoutAuth = fetchBaseQuery({
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: baseQueryWithAuth,
+  tagTypes: ["Recipes", "Recipe", "Tags", "Ingredients","User"],
   endpoints: () => ({}),
 });
 
 export const publicApi = createApi({
   reducerPath: "publicApi",
   baseQuery: baseQueryWithoutAuth,
+  tagTypes: ["Recipes", "Recipe", "Tags", "Ingredients","User"],
   endpoints: () => ({}),
 });

@@ -11,16 +11,18 @@ import {
 import CreateRecipe, {
   RecipeFormValues,
 } from "@/components/CreateRecipe/CreateRecipe";
-import { useAuth } from "@/shared/hooks/useAuth"; // убедись, что путь правильный
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store"; // проверь путь
 
 export default function CreateRecipePage() {
   const router = useRouter();
-  const { isAuth } = useAuth();
 
-  // ⛔ Редирект, если не авторизован
+  const isAuth = useSelector((state: RootState) => state.auth.user);
+  
+
   useEffect(() => {
     if (!isAuth) {
-      router.push("/login"); // или другой путь к авторизации
+      router.push("/login");
     }
   }, [isAuth, router]);
 
@@ -56,8 +58,7 @@ export default function CreateRecipePage() {
 
   return (
     <main className={styles.mainContainer}>
-     
-      {!isAuth ? null : (
+      {isAuth && (
         <CreateRecipe
           control={control}
           handleSubmit={handleSubmit}

@@ -1,6 +1,7 @@
+"use client";
 import { RecipeType } from "@/feautures/recipes/types";
 import styles from "./Recipe.module.scss";
-import React from "react";
+import React, { useState } from "react";
 import Tag from "../Tag/Tag";
 import MyBtn from "../MyBtn/MyBtn";
 import Link from "next/link";
@@ -8,11 +9,49 @@ import { BiTimer } from "react-icons/bi";
 import { truncateText } from "@/shared/utils/utils";
 import User from "../User/User";
 import { IoBookmark } from "react-icons/io5";
+import {
+  useChangeFavoriteMutation,
+  useChangeRecipeMutation,
+} from "@/feautures/recipes/recipesApi";
+import clsx from "clsx";
 
-const Recipe = ({ data }: { data: RecipeType }) => {
-  const handleFavorite = ()=>{
-    
-  }
+const Recipe = ({
+  data,
+  access = false,
+
+}: {
+  data: RecipeType;
+  access?: boolean;
+ 
+}) => {
+  const [changeMutation] = useChangeFavoriteMutation();
+
+  const [changeRecipe] = useChangeRecipeMutation();
+  const [isFavorited, setIsFavorited] = useState<boolean>(data.is_favorited);
+  console.log(data.is_favorited);
+
+  const handleFavorite = async () => {
+    try {
+      await changeMutation({
+        id: data.id,
+        type: isFavorited ? "DELETE" : "POST",
+      }).unwrap();
+      setIsFavorited((prev) => !prev);
+    } catch (e) {
+      console.error("error favorite", e);
+    }
+  };
+  const handeRecipe = async () => {
+    try {
+      await changeRecipe({
+        id: data.id,
+        type: "DELETE",
+      }).unwrap();
+     
+    } catch (e) {
+      console.error("error delete recipe", e);
+    }
+  };
   return (
     <div className={styles.recipeContainer}>
       <div className={styles.imageContainer}>
@@ -37,11 +76,22 @@ const Recipe = ({ data }: { data: RecipeType }) => {
         </div>
         <div className={styles.buttonContainer}>
           <MyBtn>
-            <Link href={`recipe/${data.id}`}>Читать</Link>
+            <Link href={`/recipe/${data.id}`}>Читать</Link>
           </MyBtn>
-          <button style={data.is_favorited? {color:'#b69a94'}:{color:'gray'}} className={styles.bookMark}>
+          {access ? (
+            <MyBtn onClick={handeRecipe} style={{ backgroundColor: "#751b08" }}>
+              Удалить
+            </MyBtn>
+          ) : null}
 
-            <IoBookmark size={30}/>
+          <button
+            onClick={handleFavorite}
+            className={clsx(
+              styles.bookMark,
+              isFavorited ? styles.favoriteBookMark : null
+            )}
+          >
+            <IoBookmark size={30} />
           </button>
         </div>
       </div>

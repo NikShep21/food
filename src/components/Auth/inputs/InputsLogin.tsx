@@ -1,16 +1,19 @@
 import MyInputAuth from '@/components/ui/MyInputAuth/MyInputAuth';
 import React from 'react'
-import { Control, Controller } from 'react-hook-form';
+import { Control, Controller, useFormState } from 'react-hook-form';
 
 interface FormValues {
     email: string;
     password: string;
+    non_field_errors?:string
 }
 interface LoginInputsProps{
   control: Control<FormValues>;
 
 };
 const InputsLogin = ({control}:LoginInputsProps) => {
+    const {errors} = useFormState({control})
+    console.log(errors.non_field_errors)
   return (
     <>
         <Controller
@@ -22,7 +25,7 @@ const InputsLogin = ({control}:LoginInputsProps) => {
                     required: "Email is required",
                     pattern: {
                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                        message: "Invalid email address",
+                        message: "Неправильная почта",
                     },
                     
 
@@ -47,7 +50,7 @@ const InputsLogin = ({control}:LoginInputsProps) => {
                   required: "Password is required",
                   minLength: {
                       value: 8,
-                      message: "Password must be at least 8 characters long",
+                      message: "Слишком короткий пароль(минимум 8 символов)",
                   },
               }
           }
@@ -61,6 +64,11 @@ const InputsLogin = ({control}:LoginInputsProps) => {
               />
           )}
         />
+        {errors.non_field_errors && (
+        <p  style={{ color: "red", marginTop: "8px" }}>
+          {errors.non_field_errors.message}
+        </p>
+      )}
     </>
   )
 }
