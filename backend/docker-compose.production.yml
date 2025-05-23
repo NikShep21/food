@@ -1,0 +1,56 @@
+version: '3.8'
+
+
+volumes:
+  pg_foodgram_data:
+  staticfiles_collected:
+  media_volume:
+
+services:
+  db_foodgram:
+    image: postgres:13-alpine
+    env_file: .env
+    volumes:
+      - pg_foodgram_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    image: zendr/infra_backend
+    env_file: .env
+    volumes:
+      - staticfiles_collected:/app/staticfiles_collected
+      - media_volume:/app/media
+      - ./data:/app/data:ro
+    depends_on:
+      db_foodgram:
+        condition: service_healthy
+    restart: unless-stopped
+
+
+  frontend:
+    image: zendr/infra_frontend
+
+    env_file: .env
+    volumes:
+      - staticfiles_collected:/app/frontend_build
+    command: sh -c "cp -r /app/build/. /app/frontend_build/ && sleep 5"
+    depends_on:
+      - backend
+
+  gateway:
+    image: zendr/infra_gateway
+    env_file: .env
+    ports:
+      - "9090:80"
+    volumes:
+      - staticfiles_collected:/staticfiles/:ro
+      - media_volume:/app_media/:ro
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped

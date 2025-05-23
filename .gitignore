@@ -1,41 +1,103 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+/frontend/node_modules/
+/frontend/.pnp
+/frontend/pnp.*
+/frontend/.yarn/*
+!/frontend/.yarn/patches
+!/frontend/.yarn/plugins
+!/frontend/.yarn/releases
+!/frontend/.yarn/versions
 
-# testing
-/coverage
+/frontend/coverage/
+/frontend/.next/
+/frontend/out/
+/frontend/build/
+/frontend/.vercel
 
-# next.js
-/.next/
-/out/
+/frontend/.env*
+*.tsbuildinfo
+frontend/next-env.d.ts
 
-# production
-/build
 
-# misc
-.DS_Store
+/backend/.env
+/backend/.venv/
+/backend/venv/
+/backend/env/
+/backend/.venv/
+/backend/__pycache__/
+/backend/*.py[cod]
+/backend/*.so
+/backend/*.egg
+/backend/*.egg-info/
+/backend/.eggs/
+/backend/dist/
+/backend/build/
+/backend/develop-eggs/
+/backend/downloads/
+/backend/lib/
+/backend/lib64/
+/backend/parts/
+/backend/sdist/
+/backend/var/
+/backend/wheels/
+/backend/pip-wheel-metadata/
+/backend/share/python-wheels/
+/backend/MANIFEST
+/backend/*.manifest
+/backend/*.spec
+/backend/pip-log.txt
+/backend/pip-delete-this-directory.txt
+/backend/htmlcov/
+/backend/.tox/
+/backend/.nox/
+/backend/.coverage
+/backend/.coverage.*
+/backend/.cache
+/backend/nosetests.xml
+/backend/coverage.xml
+/backend/*.cover
+/backend/*.py,cover
+/backend/.hypothesis/
+/backend/.pytest_cache/
+/backend/*.mo
+/backend/*.pot
+/backend/*.log
+/backend/local_settings.py
+/backend/db.sqlite3
+/backend/db.sqlite3-journal
+/backend/instance/
+/backend/.webassets-cache
+/backend/.scrapy
+/backend/docs/_build/
+/backend/target/
+/backend/.ipynb_checkpoints
+/backend/profile_default/
+/backend/ipython_config.py
+/backend/.python-version
+/backend/__pypackages__/
+/backend/celerybeat-schedule
+/backend/celerybeat.pid
+/backend/*.sage.py
+/backend/.spyderproject
+/backend/.spyproject
+/backend/.ropeproject
+/backend/site/
+/backend/.mypy_cache/
+/backend/.dmypy.json
+/backend/dmypy.json
+/backend/.pyre/
+/backend/static/
+/backend/media/
+
+
 *.pem
-
-# debug
+.DS_Store
+*.log
+*.env
+*.tsbuildinfo
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+.idea/
+.vscode/

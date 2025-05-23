@@ -1,0 +1,40 @@
+volumes:
+  pg_inform_data:
+  staticfiles_collected:
+  media_volume:
+
+services:
+  db_inform:
+    image: postgres:13-alpine
+    env_file: ../.env
+    volumes:
+      - pg_inform_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    env_file: ../.env
+    volumes:
+      - staticfiles_collected:/app/staticfiles_collected
+      - media_volume:/app/media
+      - ../data:/app/data:ro
+    
+    depends_on:
+      db_inform:
+        condition: service_healthy
+    restart: unless-stopped
+    ports:
+    - "8000:8000"
+
+
+
+
+
